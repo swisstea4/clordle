@@ -4,10 +4,13 @@ function isValid(word) {
 }
 const inputs = document.getElementsByClassName("inputs");
 const allowedLetters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+function ThrowError(error) {
+    
+}
 for (let i = 0; i < inputs.length; i++) {
     if (i%5 != 4) {
-        inputs[i].addEventListener("keyup", (event)=>{
-            if (allowedLetters.includes(event.key)) {
+        inputs[i].addEventListener("input", ()=>{
+            if (allowedLetters.includes(inputs[i].value)) {
                 inputs[i+1].focus();
             }
         });
@@ -38,7 +41,6 @@ for (let i = 0; i < inputs.length; i++) {
                 for (let j = i-4; j <= i; j++) {
                     word += inputs[j].value;
                 }
-                console.log(word);
                 if (word.length < 5) {
                     ThrowError("Not enough letters");
                 }
