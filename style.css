@@ -29,3 +29,21 @@ body {
     text-transform: capitalize;
     caret-color: transparent;
 }
+
+#allerror {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+
+    top: 68px;
+    left: 50%;
+    transform: translateX(-50%);
+    gap: 20px;
+}
+#allerror div{
+    height: 48px;
+    width: 138px;
+    
+    background-color: #d0d0d0;
+    border-radius: 10px;
+}
