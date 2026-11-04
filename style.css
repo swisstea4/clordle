@@ -30,7 +30,7 @@ body {
     caret-color: transparent;
 }
 
-#allerror {
+#allerrors {
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -40,7 +40,7 @@ body {
     transform: translateX(-50%);
     gap: 20px;
 }
-#allerror div{
+#allerrors div{
     height: 48px;
     width: 138px;
     
