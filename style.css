@@ -39,11 +39,23 @@ body {
     left: 50%;
     transform: translateX(-50%);
     gap: 20px;
+
+    align-items: center;
+
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 20px;
 }
 #allerrors div{
+    display: flex;
+
     height: 48px;
-    width: 138px;
+    width: fit-content;
+    padding-left: 30px;
+    padding-right: 30px;
     
     background-color: #d0d0d0;
     border-radius: 10px;
+
+    justify-content: center;
+    align-items: center;
 }

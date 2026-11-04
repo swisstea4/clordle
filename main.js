@@ -5,7 +5,8 @@ function isValid(word) {
 const inputs = document.getElementsByClassName("inputs");
 const allowedLetters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 function ThrowError(error) {
-    
+    const allerrors = document.getElementById("allerrors");
+    allerrors.innerHTML += '<div><p>' + error + '</p></div>';
 }
 for (let i = 0; i < inputs.length; i++) {
     if (i%5 != 4) {
@@ -29,11 +30,11 @@ for (let i = 0; i < inputs.length; i++) {
         });
     }
 
-    if (i%5 == 4 && i < 29) {
+    if (i < 29) {
         inputs[i].addEventListener("keydown", (event)=>{
             if (event.key == 'Enter') {
                 let word = '';
-                for (let j = i-4; j <= i; j++) {
+                for (let j = i-i%5; j < 5*Math.ceil(i/5); j++) {
                     word += inputs[j].value;
                 }
                 if (word.length < 5) {
