@@ -1,0 +1,29 @@
+body {
+    background-color: #1b1b1b;
+}
+#allattempts {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    margin-top: 68px;
+}
+.attempts {
+    display: flex;
+    gap: 5px;
+}
+.attempts input {
+    width: 48px;
+    aspect-ratio: 1;
+    padding: 0;
+
+    border: 1.6px solid #818181;
+    border-radius: 4px;
+    background-color: #1b1b1b;
+
+    font-size: 44px;
+    color: #ffffff;
+    text-align: center;
+    caret-color: transparent;
+}
