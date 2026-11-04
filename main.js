@@ -23,11 +23,6 @@ for (let i = 0; i < inputs.length; i++) {
 
     if (i%5 != 0) {
         inputs[i].addEventListener("keyup", (event)=>{
-            if (event.key == 'Backspace') {
-                inputs[i-1].focus();
-            }
-        });
-        inputs[i].addEventListener("keyup", (event)=>{
             if (event.key == 'ArrowLeft') {
                 inputs[i-1].focus();
             }
