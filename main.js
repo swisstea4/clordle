@@ -4,16 +4,20 @@ const allowedLetters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', '
 let colours = ["#3A3A3C", "#538D4E", "#B59F3B"];
 let NotIn, CorrectSpot, WrongSpot;
 let IdNotIn, IdCorrectSpot, IdWrongSpot;
-IdNotIn = Math.floor(Math.random()*colours.length);
-NotIn = colours[IdNotIn];
-colours.splice(IdNotIn, 1);
+function randomizeColours() {
+    IdNotIn = Math.floor(Math.random()*colours.length);
+    NotIn = colours[IdNotIn];
+    colours.splice(IdNotIn, 1);
 
-IdCorrectSpot = Math.floor(Math.random()*colours.length);
-CorrectSpot = colours[IdCorrectSpot];
-colours.splice(IdCorrectSpot, 1);
+    IdCorrectSpot = Math.floor(Math.random()*colours.length);
+    CorrectSpot = colours[IdCorrectSpot];
+    colours.splice(IdCorrectSpot, 1);
 
-IdWrongSpot = Math.floor(Math.random()*colours.length);
-WrongSpot = colours[IdWrongSpot];
+    IdWrongSpot = Math.floor(Math.random()*colours.length);
+    WrongSpot = colours[IdWrongSpot];
+    colours.splice(IdCorrectSpot, 1);
+}
+randomizeColours();
 
 let colourEmojis = {
     NotIn: "⬛",
@@ -34,6 +38,9 @@ const loseshare = document.getElementById("loseshare");
 const giveup = document.getElementById("giveup");
 const helpbutton = document.getElementById("helpbutton");
 const closehelp = document.getElementById("closehelp");
+const theme1 = document.getElementById("Theme1");
+const theme2 = document.getElementById("Theme2");
+const theme3 = document.getElementById("Theme3");
 
 inputs[0].focus();
 
@@ -263,3 +270,25 @@ closehelp.addEventListener("click", ()=>{
     const help = document.getElementById("help");
     help.style.display = "none";
 })
+
+theme1.addEventListener("click", ()=>{
+    const divs = theme1.querySelectorAll('div');
+    for (let i = 0; i < 3; i++) {
+        colours[i] = divs[i].style.backgroundColor;
+    }
+    randomizeColours();
+});
+theme2.addEventListener("click", ()=>{
+    const divs = theme2.querySelectorAll('div');
+    for (let i = 0; i < 3; i++) {
+        colours[i] = divs[i].style.backgroundColor;
+    }
+    randomizeColours();
+});
+theme3.addEventListener("click", ()=>{
+    const divs = theme3.querySelectorAll('div');
+    for (let i = 0; i < 3; i++) {
+        colours[i] = divs[i].style.backgroundColor;
+    }
+    randomizeColours();
+});
