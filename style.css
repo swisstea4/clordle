@@ -284,7 +284,7 @@ body {
         font-size: 4vw;
     }
     #keyEnter {
-        width: 8vw;
+        width: fit-content;
         font-size: 2.6vw;
     }
     #keyBackspace {
