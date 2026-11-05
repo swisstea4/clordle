@@ -1,4 +1,8 @@
 const validWords = new Set([...wordles, ...nonwordles]);
+const answer = wordles[Math.floor(Math.random()*wordles.length)];
+let NotIn = "#3A3A3C";
+let CorrectSpot = "#538D4E";
+let WrongSpot = "#B59F3B";
 function isValid(word) {
     return validWords.has(word.toLowerCase());
 }
@@ -10,6 +14,23 @@ function ThrowError(error) {
     setTimeout(()=>{
         allerrors.innerHTML = allerrors.innerHTML.replace('<div><p>' + error + '</p></div>', '');
     }, 5000);
+}
+function ProcessWord(attempt, word) {
+    let response = [0, 0, 0, 0, 0];
+    for (let i = 0; i < 5; i++) {
+        if (word[i] === answer[i]) {
+            response[i] = CorrectSpot;
+        }
+        else if (answer.includes(word[i])) {
+            response[i] = WrongSpot;
+        }
+        else {
+            response[i] = NotIn;
+        }
+    }
+    for (let i = (attempt-1)*5; i < attempt*5; i++) {
+        inputs[i].style.backgroundColor = response[i-(attempt-1)*5];
+    }
 }
 for (let i = 0; i < inputs.length; i++) {
     if (i%5 != 4) {
@@ -61,6 +82,7 @@ for (let i = 0; i < inputs.length; i++) {
                         ThrowError("Not a valid word");
                     }
                     else {
+                        ProcessWord(Math.floor(i/5)+1, word);
                         inputs[i+1].focus();
                     }
                 }
