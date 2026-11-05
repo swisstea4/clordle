@@ -31,6 +31,8 @@ const winplayagain = document.getElementById("winplayagain");
 const loseplayagain = document.getElementById("loseplayagain");
 const winshare = document.getElementById("winshare");
 const giveup = document.getElementById("giveup");
+const helpbutton = document.getElementById("helpbutton");
+const closehelp = document.getElementById("closehelp");
 
 inputs[0].focus();
 
@@ -232,3 +234,17 @@ loseshare.addEventListener("click", ()=>{
 giveup.addEventListener("click", ()=>{
     EndGame(false); 
 });
+
+helpbutton.addEventListener("click", ()=>{
+    const help = document.getElementById("help");
+    if (help.style.display == "none") {
+        help.style.display = "flex";
+    }
+    else {
+        help.style.display = "none";
+    }
+});
+closehelp.addEventListener("click", ()=>{
+    const help = document.getElementById("help");
+    help.style.display = "none";
+})
