@@ -48,6 +48,7 @@ function SendMessage(message) {
 }
 function ProcessWord(word) {
     let response = [0, 0, 0, 0, 0];
+    word = word.toLowerCase();
     for (let i = 0; i < 5; i++) {
         if (word[i] === answer[i]) {
             response[i] = CorrectSpot;
