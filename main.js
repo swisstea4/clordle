@@ -60,7 +60,7 @@ function ProcessWord(word) {
         }
     }
     for (let i = (attempt-1)*5; i < attempt*5; i++) {
-        inputs[i].style.backgroundcolour = response[i-(attempt-1)*5];
+        inputs[i].style.backgroundColor = response[i-(attempt-1)*5];
     }
     attempt++;
 
