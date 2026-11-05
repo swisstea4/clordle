@@ -74,7 +74,6 @@ body {
     height: 58px;
 
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 18px;
 
     color: #F8F8F8;
     background-color: #818181;
@@ -83,6 +82,7 @@ body {
 }
 .letterKeys {
     width: 43px;
+    font-size: 18px;
 }
 #keyBackspace img {
     height: 30%;
