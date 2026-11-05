@@ -1,3 +1,7 @@
+@font-face {
+    font-family: 'Libre Franklin';
+    src: url(fonts/LibreFranklin-ExtraBold.ttf);
+}
 body {
     background-color: #1b1b1b;
 }
@@ -33,7 +37,7 @@ body {
     background-color: #1b1b1b;
 
     font-size: 32px;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: 'Libre Franklin';
     color: #ffffff;
     text-align: center;
     text-transform: capitalize;
@@ -50,7 +54,7 @@ body {
 
     align-items: center;
 
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: 'Libre Franklin';
     font-size: 20px;
 }
 #allmessages div{
@@ -85,7 +89,7 @@ body {
     justify-content: center;
     align-items: center;
 
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: 'Libre Franklin';
 
     color: #F8F8F8;
     background-color: #818181;
@@ -126,7 +130,7 @@ body {
     background-color: #323232ee;
     border-radius: 10px;
 
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: 'Libre Franklin';
     color: #F8F8F8;
 }
 #wintitle, #losetitle {
@@ -142,7 +146,7 @@ body {
     gap: 50px;
 }
 #winplayagain, #loseplayagain, #winshare, #loseshare {
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: 'Libre Franklin';
     font-size: 30px;
     padding: 20px;
 
@@ -165,7 +169,7 @@ body {
     width: 60px;
     height: 60px;
 
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: 'Libre Franklin';
     font-size: 20px;
     color: #F8F8F8;
 
@@ -187,7 +191,7 @@ body {
     width: 60px;
     height: 60px;
 
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: 'Libre Franklin';
     font-size: 40px;
     color: #F8F8F8;
 
@@ -214,7 +218,7 @@ body {
     background-color: #323232;
     border-radius: 10px;
 
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: 'Libre Franklin';
     color: #F8F8F8;
 }
 #helptitle {
