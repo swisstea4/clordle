@@ -3,6 +3,7 @@ const answer = wordles[Math.floor(Math.random()*wordles.length)];
 let NotIn = "#3A3A3C";
 let CorrectSpot = "#538D4E";
 let WrongSpot = "#B59F3B";
+let attempt = 1;
 function isValid(word) {
     return validWords.has(word.toLowerCase());
 }
@@ -15,7 +16,7 @@ function ThrowError(error) {
         allerrors.innerHTML = allerrors.innerHTML.replace('<div><p>' + error + '</p></div>', '');
     }, 5000);
 }
-function ProcessWord(attempt, word) {
+function ProcessWord(word) {
     let response = [0, 0, 0, 0, 0];
     for (let i = 0; i < 5; i++) {
         if (word[i] === answer[i]) {
@@ -31,6 +32,7 @@ function ProcessWord(attempt, word) {
     for (let i = (attempt-1)*5; i < attempt*5; i++) {
         inputs[i].style.backgroundColor = response[i-(attempt-1)*5];
     }
+    attempt++;
 }
 for (let i = 0; i < inputs.length; i++) {
     if (i%5 != 4) {
@@ -66,27 +68,27 @@ for (let i = 0; i < inputs.length; i++) {
             }
         });
     }
-
-    if (i < 29) {
-        inputs[i].addEventListener("keydown", (event)=>{
-            if (event.key == 'Enter') {
-                let word = '';
-                for (let j = i-i%5; j < 5*Math.ceil(i/5); j++) {
-                    word += inputs[j].value;
-                }
-                if (word.length < 5) {
-                    ThrowError("Not enough letters");
+    
+    inputs[i].addEventListener("keydown", (event)=>{
+        if (event.key == 'Enter') {
+            let word = '';
+            for (let j = i-i%5; j < 5*Math.ceil(i/5); j++) {
+                word += inputs[j].value;
+            }
+            if (word.length < 5) {
+                ThrowError("Not enough letters");
+            }
+            else {
+                if (!isValid(word)) {
+                    ThrowError("Not a valid word");
                 }
                 else {
-                    if (!isValid(word)) {
-                        ThrowError("Not a valid word");
-                    }
-                    else {
-                        ProcessWord(Math.floor(i/5)+1, word);
+                    ProcessWord(word);
+                    if (i+1 < inputs.length) {
                         inputs[i+1].focus();
                     }
                 }
             }
-        });
-    }
+        }
+    });
 }
