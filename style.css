@@ -86,6 +86,10 @@ body {
     background-color: #818181;
     border: 0px;
     border-radius: 7px;
+    cursor: pointer;
+}
+#keyboard button:hover {
+    filter: brightness(80%);
 }
 .letterKeys {
     width: 43px;
