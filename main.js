@@ -1,21 +1,21 @@
 const validWords = new Set([...wordles, ...nonwordles]);
 const answer = wordles[Math.floor(Math.random()*wordles.length)];
 const allowedLetters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
-let colors = ["#3A3A3C", "#538D4E", "#B59F3B"];
+let colours = ["#3A3A3C", "#538D4E", "#B59F3B"];
 let NotIn, CorrectSpot, WrongSpot;
 let IdNotIn, IdCorrectSpot, IdWrongSpot;
-IdNotIn = Math.floor(Math.random()*colors.length);
-NotIn = colors[IdNotIn];
-colors.splice(IdNotIn, 1);
+IdNotIn = Math.floor(Math.random()*colours.length);
+NotIn = colours[IdNotIn];
+colours.splice(IdNotIn, 1);
 
-IdCorrectSpot = Math.floor(Math.random()*colors.length);
-CorrectSpot = colors[IdCorrectSpot];
-colors.splice(IdCorrectSpot, 1);
+IdCorrectSpot = Math.floor(Math.random()*colours.length);
+CorrectSpot = colours[IdCorrectSpot];
+colours.splice(IdCorrectSpot, 1);
 
-IdWrongSpot = Math.floor(Math.random()*colors.length);
-WrongSpot = colors[IdWrongSpot];
+IdWrongSpot = Math.floor(Math.random()*colours.length);
+WrongSpot = colours[IdWrongSpot];
 
-let colorEmojis = {
+let colourEmojis = {
     NotIn: "⬛",
     CorrectSpot: "🟩",
     WrongSpot: "🟨"
@@ -58,7 +58,7 @@ function ProcessWord(word) {
         }
     }
     for (let i = (attempt-1)*5; i < attempt*5; i++) {
-        inputs[i].style.backgroundColor = response[i-(attempt-1)*5];
+        inputs[i].style.backgroundcolour = response[i-(attempt-1)*5];
     }
     attempt++;
 
@@ -199,16 +199,16 @@ loseplayagain.addEventListener("click", ()=>{
     window.location.reload();
 });
 
-function reverseColor(color) {
-    if (NotIn == color) return "NotIn";
-    if (CorrectSpot == color) return "CorrectSpot";
-    if (WrongSpot == color) return "WrongSpot";
+function reversecolour(colour) {
+    if (NotIn == colour) return "NotIn";
+    if (CorrectSpot == colour) return "CorrectSpot";
+    if (WrongSpot == colour) return "WrongSpot";
 }
 winshare.addEventListener("click", ()=>{
     let copy = "Clordle\n";
     for (const Result of result) {
-        for (const color of Result) {
-            copy += colorEmojis[reverseColor(color)];
+        for (const colour of Result) {
+            copy += colourEmojis[reversecolour(colour)];
         }
         copy += "\n";
     }
@@ -219,8 +219,8 @@ winshare.addEventListener("click", ()=>{
 loseshare.addEventListener("click", ()=>{
     let copy = "Clordle\n";
     for (const Result of result) {
-        for (const color of Result) {
-            copy += colorEmojis[reverseColor(color)];
+        for (const colour of Result) {
+            copy += colourEmojis[reversecolour(colour)];
         }
         copy += "\n";
     }
