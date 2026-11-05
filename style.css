@@ -72,7 +72,7 @@ body {
 }
 #KBrow1, #KBrow2, #KBrow3 {
     display: flex;
-    gap: 4px;
+    gap: 6px;
 }
 #keyboard button{
     height: 58px;
