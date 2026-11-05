@@ -1,9 +1,20 @@
 const validWords = new Set([...wordles, ...nonwordles]);
 const answer = wordles[Math.floor(Math.random()*wordles.length)];
 const allowedLetters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
-let NotIn = "#3A3A3C";
-let CorrectSpot = "#538D4E";
-let WrongSpot = "#B59F3B";
+let colors = ["#3A3A3C", "#538D4E", "#B59F3B"];
+let NotIn, CorrectSpot, WrongSpot;
+let IdNotIn, IdCorrectSpot, IdWrongSpot;
+IdNotIn = Math.floor(Math.random()*colors.length);
+NotIn = colors[IdNotIn];
+colors.splice(IdNotIn, 1);
+
+IdCorrectSpot = Math.floor(Math.random()*colors.length);
+CorrectSpot = colors[IdCorrectSpot];
+colors.splice(IdCorrectSpot, 1);
+
+IdWrongSpot = Math.floor(Math.random()*colors.length);
+WrongSpot = colors[IdWrongSpot];
+
 let colorEmojis = {
     NotIn: "⬛",
     CorrectSpot: "🟩",
