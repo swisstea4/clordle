@@ -209,11 +209,11 @@ body {
     flex-direction: column;
     align-items: center;
     width: 400px;
-    height: 500px;
+    height: fit-content;
     padding: 50px;
-    left: 30%;
-    top: 30%;
-    transform: translate(-30%, -30%);
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
     
     background-color: #323232;
     border-radius: 10px;
