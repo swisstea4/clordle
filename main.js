@@ -111,30 +111,7 @@ function ProcessWord(word) {
 for (let i = 0; i < inputs.length; i++) {
     inputs[i].addEventListener("keydown", (event)=>{
         event.preventDefault();
-        if (allowedLetters.includes(event.key)) {
-            changeInput(event.key);
-        }
-    });
-    inputs[i].addEventListener("keydown", (event)=>{
-        if (event.key == 'ArrowRight') {
-            changeInput(event.key);
-        }
-    });
-
-    inputs[i].addEventListener("keydown", (event)=>{
-        if (event.key == 'Backspace') {
-            changeInput(event.key);
-        }
-    });
-
-    inputs[i].addEventListener("keydown", (event)=>{
-        if (event.key == 'ArrowLeft') {
-            changeInput(event.key);
-        }
-    });
-    
-    inputs[i].addEventListener("keydown", (event)=>{
-        if (event.key == 'Enter') {
+        if (allowedLetters.includes(event.key) || event.key == 'ArrowLeft' || event.key == 'ArrowRight' || event.key == 'Backspace' || event.key == 'Enter') {
             changeInput(event.key);
         }
     });
