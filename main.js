@@ -38,6 +38,7 @@ function ProcessWord(word) {
     }
     attempt++;
 }
+
 for (let i = 0; i < inputs.length; i++) {
     if (i%5 != 4) {
         inputs[i].addEventListener("input", ()=>{
@@ -94,5 +95,9 @@ for (let i = 0; i < inputs.length; i++) {
                 }
             }
         }
+    });
+
+    inputs[i].addEventListener("mousedown", (event)=>{
+        event.preventDefault();
     });
 }
