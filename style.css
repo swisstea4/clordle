@@ -227,3 +227,20 @@ body {
 #help li {
     margin-bottom: 12px;
 }
+#closehelp {
+    position: absolute;
+    
+    width: 30px;
+    height: fit-content;
+    padding: 0;
+    top: 15px;
+    right: 15px;
+
+    border: none;
+    background: transparent;
+
+    cursor: pointer;
+}
+#closehelp img{
+    width: 90%;
+}
