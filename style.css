@@ -158,6 +158,8 @@ body {
 
 #giveup {
     position: absolute;
+    right: 0px;
+    top: 68px;
 
     width: 60px;
     height: 60px;
@@ -170,11 +172,30 @@ body {
     border: 0px solid;
     border-radius: 15px;
 
-    right: 0px;
-    top: 68px;
-
     cursor: pointer;
 }
 #giveup:hover {
+    filter: brightness(80%)
+}
+
+#help {
+    position: absolute;
+    right: 0px;
+    top: 138px;
+
+    width: 60px;
+    height: 60px;
+
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 40px;
+    color: #F8F8F8;
+
+    background-color: #84adae;
+    border: 0px solid;
+    border-radius: 15px;
+
+    cursor: pointer;
+}
+#help:hover {
     filter: brightness(80%)
 }
