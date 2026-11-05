@@ -50,17 +50,25 @@ function SendMessage(message) {
 function ProcessWord(word) {
     let response = [0, 0, 0, 0, 0];
     word = word.toLowerCase();
+    let answerCopy = answer.split('');
     for (let i = 0; i < 5; i++) {
         if (word[i] === answer[i]) {
             response[i] = CorrectSpot;
+            answerCopy[i] = null;
         }
-        else if (answer.includes(word[i])) {
+    }
+    for (let i = 0; i < 5; i++) {
+        if (response[i] !== 0) continue;
+        const inAnswer = answerCopy.indexOf(word[i]);
+        if (inAnswer !== -1) {
             response[i] = WrongSpot;
+            answerCopy[inAnswer] = null;
         }
         else {
             response[i] = NotIn;
         }
     }
+
     for (let i = (attempt-1)*5; i < attempt*5; i++) {
         inputs[i].style.backgroundColor = response[i-(attempt-1)*5];
     }
