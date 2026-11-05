@@ -72,8 +72,8 @@ function changeInput(letter) {
             else {
                 ProcessWord(word);
                 if (i+1 < inputs.length) {
-                    inputs[i+1].focus();
-                    focused = i+1;
+                    focused = 5*Math.ceil(focused/5);
+                    inputs[focused].focus();
                 }
             }
         }
