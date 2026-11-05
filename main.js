@@ -62,7 +62,6 @@ function ProcessWord(word) {
     for (let i = (attempt-1)*5; i < attempt*5; i++) {
         inputs[i].style.backgroundColor = response[i-(attempt-1)*5];
     }
-    attempt++;
 
     let CorrectAnswer = true;
     for (let i = 0; i < 5; i++) {
@@ -72,6 +71,12 @@ function ProcessWord(word) {
         }
     }
     result.push(response);
+    
+    for (let i = 0; i < 5; i++) {
+        const key = allKeys['key' + word[i].toUpperCase()];
+        key.style.backgroundColor = response[i];
+    }
+    attempt++;
     return CorrectAnswer;
 }
 function EndGame(win) {
