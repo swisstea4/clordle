@@ -4,11 +4,15 @@ let NotIn = "#3A3A3C";
 let CorrectSpot = "#538D4E";
 let WrongSpot = "#B59F3B";
 let attempt = 1;
+
+const inputs = document.getElementsByClassName("inputs");
+const allowedLetters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+
+inputs[0].focus();
+
 function isValid(word) {
     return validWords.has(word.toLowerCase());
 }
-const inputs = document.getElementsByClassName("inputs");
-const allowedLetters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 function ThrowError(error) {
     const allerrors = document.getElementById("allerrors");
     allerrors.innerHTML = '<div><p>' + error + '</p></div>' + allerrors.innerHTML;
