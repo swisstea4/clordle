@@ -12,6 +12,53 @@ const allKeys = document.getElementsByClassName("allKeys");
 
 inputs[0].focus();
 
+function isValid(word) {
+    return validWords.has(word.toLowerCase());
+}
+function ThrowError(error) {
+    const allerrors = document.getElementById("allerrors");
+    allerrors.innerHTML = '<div><p>' + error + '</p></div>' + allerrors.innerHTML;
+    setTimeout(()=>{
+        allerrors.innerHTML = allerrors.innerHTML.replace('<div><p>' + error + '</p></div>', '');
+    }, 5000);
+}
+function ProcessWord(word) {
+    let response = [0, 0, 0, 0, 0];
+    for (let i = 0; i < 5; i++) {
+        if (word[i] === answer[i]) {
+            response[i] = CorrectSpot;
+        }
+        else if (answer.includes(word[i])) {
+            response[i] = WrongSpot;
+        }
+        else {
+            response[i] = NotIn;
+        }
+    }
+    for (let i = (attempt-1)*5; i < attempt*5; i++) {
+        inputs[i].style.backgroundColor = response[i-(attempt-1)*5];
+    }
+    attempt++;
+
+    let CorrectAnswer = true;
+    for (let i = 0; i < 5; i++) {
+        if (response[i] != CorrectSpot) {
+            CorrectAnswer = false;
+            break;
+        }
+    }
+    return CorrectAnswer;
+}
+function EndGame(win) {
+    if (win) {
+        const wingame = document.getElementById("wingame");
+        wingame.style.display = "flex";
+    }
+    else {
+        const losegame = document.getElementById("losegame");
+        losegame.style.display = "flex";
+    }
+}
 function changeInput(letter) {
     if (letter.length == 1) {
         inputs[focused].value = letter;
@@ -70,42 +117,22 @@ function changeInput(letter) {
                 ThrowError("Not a valid word");
             }
             else {
-                ProcessWord(word);
-                if (i+1 < inputs.length) {
-                    focused = 5*Math.ceil(focused/5);
-                    inputs[focused].focus();
+                let CorrectAnswer = ProcessWord(word);
+                if (CorrectAnswer) {
+                    EndGame(true);
+                }
+                else {
+                    if (i+1 < inputs.length) {
+                        focused = 5*Math.ceil(focused/5);
+                        inputs[focused].focus();
+                    }
+                    else {
+                        EndGame(false);
+                    }
                 }
             }
         }
     }
-}
-function isValid(word) {
-    return validWords.has(word.toLowerCase());
-}
-function ThrowError(error) {
-    const allerrors = document.getElementById("allerrors");
-    allerrors.innerHTML = '<div><p>' + error + '</p></div>' + allerrors.innerHTML;
-    setTimeout(()=>{
-        allerrors.innerHTML = allerrors.innerHTML.replace('<div><p>' + error + '</p></div>', '');
-    }, 5000);
-}
-function ProcessWord(word) {
-    let response = [0, 0, 0, 0, 0];
-    for (let i = 0; i < 5; i++) {
-        if (word[i] === answer[i]) {
-            response[i] = CorrectSpot;
-        }
-        else if (answer.includes(word[i])) {
-            response[i] = WrongSpot;
-        }
-        else {
-            response[i] = NotIn;
-        }
-    }
-    for (let i = (attempt-1)*5; i < attempt*5; i++) {
-        inputs[i].style.backgroundColor = response[i-(attempt-1)*5];
-    }
-    attempt++;
 }
 
 for (let i = 0; i < inputs.length; i++) {
