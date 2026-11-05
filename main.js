@@ -9,6 +9,8 @@ let focused = 0;
 
 const inputs = document.getElementsByClassName("inputs");
 const allKeys = document.getElementsByClassName("allKeys");
+const winplayagain = document.getElementById("winplayagain");
+const loseplayagain = document.getElementById("loseplayagain");
 
 inputs[0].focus();
 
@@ -164,3 +166,10 @@ for (let i = 0; i < allKeys.length; i++) {
         changeInput(allKeys[i].id.slice(3));
     });
 }
+
+winplayagain.addEventListener("click", ()=>{
+    window.location.reload();
+});
+loseplayagain.addEventListener("click", ()=>{
+    window.location.reload();
+});
