@@ -178,7 +178,7 @@ body {
     filter: brightness(80%)
 }
 
-#help {
+#helpbutton {
     position: absolute;
     right: 0px;
     top: 138px;
@@ -196,6 +196,34 @@ body {
 
     cursor: pointer;
 }
-#help:hover {
+#helpbutton:hover {
     filter: brightness(80%)
+}
+#help {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 400px;
+    height: 500px;
+    padding: 50px;
+    left: 30%;
+    top: 30%;
+    transform: translate(-30%, -30%);
+    
+    background-color: #323232;
+    border-radius: 10px;
+
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #F8F8F8;
+}
+#helptitle {
+    font-size: 50px;
+    margin: 0;   
+}
+.helpP {
+    font-size: 18px;
+}
+#help li {
+    margin-bottom: 12px;
 }
