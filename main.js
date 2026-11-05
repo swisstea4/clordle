@@ -30,6 +30,7 @@ const allKeys = document.getElementsByClassName("allKeys");
 const winplayagain = document.getElementById("winplayagain");
 const loseplayagain = document.getElementById("loseplayagain");
 const winshare = document.getElementById("winshare");
+const giveup = document.getElementById("giveup");
 
 inputs[0].focus();
 
@@ -226,4 +227,8 @@ loseshare.addEventListener("click", ()=>{
     copy += "Play at https://swisstea4.github.io/clordle";
     navigator.clipboard.writeText(copy);
     SendMessage("Copied to clipboard");
+});
+
+giveup.addEventListener("click", ()=>{
+    EndGame(false); 
 });
