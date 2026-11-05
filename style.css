@@ -91,6 +91,12 @@ body {
     width: 43px;
     font-size: 18px;
 }
+#keyEnter {
+    width: 60px;
+}
+#keyBackspace {
+    width: 50px;
+}
 #keyBackspace img {
     height: 30%;
 }
