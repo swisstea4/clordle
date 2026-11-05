@@ -25,7 +25,7 @@ function changeInput(letter) {
     }
     else if (letter == 'Backspace') {
         let goBack = false;
-        if (focused%5 !== 0 && inputs[focused].value.length == 1) {
+        if (focused%5 !== 0 && inputs[focused].value.length == 0) {
             goBack = true;
         }
         inputs[focused].value = '';
@@ -109,9 +109,10 @@ function ProcessWord(word) {
 }
 
 for (let i = 0; i < inputs.length; i++) {
-    inputs[i].addEventListener("input", ()=>{
-        if (allowedLetters.includes(inputs[i].value)) {
-            changeInput(inputs[i].value);
+    inputs[i].addEventListener("keydown", (event)=>{
+        event.preventDefault();
+        if (allowedLetters.includes(event.key)) {
+            changeInput(event.key);
         }
     });
     inputs[i].addEventListener("keydown", (event)=>{
@@ -120,13 +121,13 @@ for (let i = 0; i < inputs.length; i++) {
         }
     });
 
-    inputs[i].addEventListener("keyup", (event)=>{
+    inputs[i].addEventListener("keydown", (event)=>{
         if (event.key == 'Backspace') {
             changeInput(event.key);
         }
     });
 
-    inputs[i].addEventListener("keyup", (event)=>{
+    inputs[i].addEventListener("keydown", (event)=>{
         if (event.key == 'ArrowLeft') {
             changeInput(event.key);
         }
