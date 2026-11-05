@@ -12,6 +12,7 @@ let colorEmojis = {
 let attempt = 1;
 let focused = 0;
 let result = [];
+let winmessages = ['Genius', 'Magnificent', 'Impressive', 'Splendid', 'Great', 'Phew'];
 
 const inputs = document.getElementsByClassName("inputs");
 const allKeys = document.getElementsByClassName("allKeys");
@@ -63,13 +64,17 @@ function EndGame(win) {
     if (win) {
         const wingame = document.getElementById("wingame");
         const winattempts = document.getElementById("winattempts");
-        if (attempt-1 == 1) {
-            winattempts.textContent = attempt-1 + " attempt";
+
+        attempt--;
+        if (attempt == 1) {
+            winattempts.textContent = attempt + " attempt";
         }
         else {
-            winattempts.textContent = attempt-1 + " attempts";
+            winattempts.textContent = attempt + " attempts";
         }
         wingame.style.display = "flex";
+
+        SendMessage(winmessages[attempt-1]);
     }
     else {
         const losegame = document.getElementById("losegame");
@@ -197,6 +202,7 @@ winshare.addEventListener("click", ()=>{
     }
     copy += "Play at https://swisstea4.github.io/clordle";
     navigator.clipboard.writeText(copy);
+    SendMessage("Copied to clipboard");
 });
 loseshare.addEventListener("click", ()=>{
     let copy = "Clordle\n";
@@ -208,4 +214,5 @@ loseshare.addEventListener("click", ()=>{
     }
     copy += "Play at https://swisstea4.github.io/clordle";
     navigator.clipboard.writeText(copy);
+    SendMessage("Copied to clipboard");
 });
