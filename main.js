@@ -1,15 +1,84 @@
 const validWords = new Set([...wordles, ...nonwordles]);
 const answer = wordles[Math.floor(Math.random()*wordles.length)];
+const allowedLetters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 let NotIn = "#3A3A3C";
 let CorrectSpot = "#538D4E";
 let WrongSpot = "#B59F3B";
 let attempt = 1;
+let focused = 0;
 
 const inputs = document.getElementsByClassName("inputs");
-const allowedLetters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+const allKeys = document.getElementsByClassName("allKeys");
 
 inputs[0].focus();
 
+function changeInput(letter) {
+    if (letter.length == 1) {
+        inputs[focused].value = letter;
+        if (focused%5 !== 4) {
+            focused++;
+            inputs[focused].focus();
+        }
+        else {
+            inputs[focused].focus();
+        }
+    }
+    else if (letter == 'Backspace') {
+        let goBack = false;
+        if (focused%5 !== 0 && inputs[focused].value.length == 1) {
+            goBack = true;
+        }
+        inputs[focused].value = '';
+
+        if (goBack) {
+            focused--;
+            inputs[focused].focus();
+        }
+        else {
+            inputs[focused].focus();
+        }
+    }
+    else if (letter == 'ArrowLeft') {
+        if (focused%5 !== 0) {
+            focused--;
+            inputs[focused].focus();
+        }
+        else {
+            inputs[focused].focus();
+        }
+    }
+    else if (letter == 'ArrowRight') {
+        if (focused%5 !== 4) {
+            focused++;
+            inputs[focused].focus();
+        }
+        else {
+            inputs[focused].focus();
+        }
+    }
+    else if (letter == 'Enter') {
+        let word = '';
+        let i = focused;
+        for (let j = i-i%5; j < 5*Math.ceil(i/5); j++) {
+            word += inputs[j].value;
+        }
+        if (word.length < 5) {
+            ThrowError("Not enough letters");
+        }
+        else {
+            if (!isValid(word)) {
+                ThrowError("Not a valid word");
+            }
+            else {
+                ProcessWord(word);
+                if (i+1 < inputs.length) {
+                    inputs[i+1].focus();
+                    focused = i+1;
+                }
+            }
+        }
+    }
+}
 function isValid(word) {
     return validWords.has(word.toLowerCase());
 }
@@ -40,64 +109,44 @@ function ProcessWord(word) {
 }
 
 for (let i = 0; i < inputs.length; i++) {
-    if (i%5 != 4) {
-        inputs[i].addEventListener("input", ()=>{
-            if (allowedLetters.includes(inputs[i].value)) {
-                inputs[i+1].focus();
-            }
-        });
-        inputs[i].addEventListener("keydown", (event)=>{
-            if (event.key == 'ArrowRight') {
-                inputs[i+1].focus();
-            }
-        });
-    }
+    inputs[i].addEventListener("input", ()=>{
+        if (allowedLetters.includes(inputs[i].value)) {
+            changeInput(inputs[i].value);
+        }
+    });
+    inputs[i].addEventListener("keydown", (event)=>{
+        if (event.key == 'ArrowRight') {
+            changeInput(event.key);
+        }
+    });
 
-    if (i%5 != 0) {
-        let inputFired = false;
-        inputs[i].addEventListener("input", ()=>{
-            inputFired = true;
-        });
-        inputs[i].addEventListener("keyup", (event)=>{
-            if (event.key == 'Backspace' && !inputFired) {
-                inputs[i-1].focus();
-            }
-            if (inputFired) {
-                inputFired = false;
-            }
-        });
+    inputs[i].addEventListener("keyup", (event)=>{
+        if (event.key == 'Backspace') {
+            changeInput(event.key);
+        }
+    });
 
-        inputs[i].addEventListener("keyup", (event)=>{
-            if (event.key == 'ArrowLeft') {
-                inputs[i-1].focus();
-            }
-        });
-    }
+    inputs[i].addEventListener("keyup", (event)=>{
+        if (event.key == 'ArrowLeft') {
+            changeInput(event.key);
+        }
+    });
     
     inputs[i].addEventListener("keydown", (event)=>{
         if (event.key == 'Enter') {
-            let word = '';
-            for (let j = i-i%5; j < 5*Math.ceil(i/5); j++) {
-                word += inputs[j].value;
-            }
-            if (word.length < 5) {
-                ThrowError("Not enough letters");
-            }
-            else {
-                if (!isValid(word)) {
-                    ThrowError("Not a valid word");
-                }
-                else {
-                    ProcessWord(word);
-                    if (i+1 < inputs.length) {
-                        inputs[i+1].focus();
-                    }
-                }
-            }
+            changeInput(event.key);
         }
     });
 
     inputs[i].addEventListener("mousedown", (event)=>{
-        event.preventDefault();
+        if (i !== focused) {
+            event.preventDefault();
+        }
+    });
+}
+
+for (let i = 0; i < allKeys.length; i++) {
+    allKeys[i].addEventListener("click", ()=>{
+        changeInput(allKeys[i].id.slice(3));
     });
 }
