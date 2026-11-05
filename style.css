@@ -243,3 +243,114 @@ body {
 #closehelp img{
     width: 90%;
 }
+
+@media (max-width: 600px) {
+    #allattempts {
+        gap: 1vw;
+        margin-top: 13.6vw;
+    }
+    .attempts {
+        gap: 1vw;
+    }
+    .attempts input {
+        width: 9.6vw;
+
+        font-size: 6.5vw;
+    }
+
+    #allmessages {
+        top: 13.5vw;
+        gap: 2vw;
+        font-size: 4vw;
+    }
+    #allmessages div{
+        height: 9.6vw;
+        padding-left: 6vw;
+        padding-right: 6vw;
+
+        border-radius: 2vw;
+    }
+    #keyboard {
+        margin-top: 4vw;
+        gap: 2vw;
+    }
+    #KBrow1, #KBrow2, #KBrow3 {
+        display: flex;
+        gap: 1vw;
+    }
+    .letterKeys {
+        width: 8vw;
+        font-size: 4vw;
+    }
+    #keyEnter {
+        width: 8vw;
+    }
+    #keyBackspace {
+        width: 8vw;
+    }
+
+    #wingame, #losegame {
+        width: 90vw;
+        height: 60vw;
+        padding-top: 0;
+        padding-left: 0;
+        padding-right: 0;
+        padding-bottom: 10vw;
+    }
+    #wintitle, #losetitle {
+        font-size: 6vw;
+    }
+    #winattempts, #loseword {
+        font-size: 12vw;
+        margin-bottom: 14vw;
+    }
+    #winbuttons, #losebuttons {
+        display: flex;
+        gap: 10vw;
+    }
+    #winplayagain, #loseplayagain, #winshare, #loseshare {
+        font-size: 6vw;
+        padding: 4vw;
+
+    }
+
+    #giveup {
+        top: 13.6vw;
+
+        width: 12vw;
+        height: 12vw;
+
+        font-size: 4vw;
+    }
+
+    #helpbutton {
+        position: absolute;
+        right: 0px;
+        top: 28vw;
+
+        width: 12vw;
+        height: 12vw;
+        font-size: 9vw;
+    }
+    #help {
+        width: 80vw;
+        height: fit-content;
+        padding: 5vw;
+    }
+    #helptitle {
+        font-size: 10vw;
+        margin: 0;   
+    }
+    .helpP {
+        font-size: 3.6vw;
+    }
+    #help li {
+        margin-bottom: 2.4vw;
+    }
+    #closehelp {
+        width: 6vw;
+    }
+    #closehelp img{
+        width: 90%;
+    }
+}
