@@ -30,6 +30,7 @@ const allKeys = document.getElementsByClassName("allKeys");
 const winplayagain = document.getElementById("winplayagain");
 const loseplayagain = document.getElementById("loseplayagain");
 const winshare = document.getElementById("winshare");
+const loseshare = document.getElementById("loseshare");
 const giveup = document.getElementById("giveup");
 const helpbutton = document.getElementById("helpbutton");
 const closehelp = document.getElementById("closehelp");
