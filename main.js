@@ -26,9 +26,16 @@ for (let i = 0; i < inputs.length; i++) {
     }
 
     if (i%5 != 0) {
-        inputs[i].addEventListener("keydown", (event)=>{
-            if (event.key == 'Backspace' && inputs[i].value == '') {
+        let inputFired = false;
+        inputs[i].addEventListener("input", ()=>{
+            inputFired = true;
+        });
+        inputs[i].addEventListener("keyup", (event)=>{
+            if (event.key == 'Backspace' && !inputFired) {
                 inputs[i-1].focus();
+            }
+            if (inputFired) {
+                inputFired = false;
             }
         });
 
