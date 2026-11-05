@@ -52,10 +52,19 @@ function ProcessWord(word) {
 function EndGame(win) {
     if (win) {
         const wingame = document.getElementById("wingame");
+        const winattempts = document.getElementById("winattempts");
+        if (attempt-1 == 1) {
+            winattempts.textContent = attempt-1 + " attempt";
+        }
+        else {
+            winattempts.textContent = attempt-1 + " attempts";
+        }
         wingame.style.display = "flex";
     }
     else {
         const losegame = document.getElementById("losegame");
+        const loseword = document.getElementById("loseword");
+        loseword.textContent = answer.toUpperCase();
         losegame.style.display = "flex";
     }
 }
