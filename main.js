@@ -24,11 +24,11 @@ inputs[0].focus();
 function isValid(word) {
     return validWords.has(word.toLowerCase());
 }
-function ThrowError(error) {
-    const allerrors = document.getElementById("allerrors");
-    allerrors.innerHTML = '<div><p>' + error + '</p></div>' + allerrors.innerHTML;
+function SendMessage(message) {
+    const allmessages = document.getElementById("allmessages");
+    allmessages.innerHTML = '<div><p>' + message + '</p></div>' + allmessages.innerHTML;
     setTimeout(()=>{
-        allerrors.innerHTML = allerrors.innerHTML.replace('<div><p>' + error + '</p></div>', '');
+        allmessages.innerHTML = allmessages.innerHTML.replace('<div><p>' + message + '</p></div>', '');
     }, 5000);
 }
 function ProcessWord(word) {
@@ -129,11 +129,11 @@ function changeInput(letter) {
             word += inputs[j].value;
         }
         if (word.length < 5) {
-            ThrowError("Not enough letters");
+            SendMessage("Not enough letters");
         }
         else {
             if (!isValid(word)) {
-                ThrowError("Not a valid word");
+                SendMessage("Not a valid word");
             }
             else {
                 let CorrectAnswer = ProcessWord(word);

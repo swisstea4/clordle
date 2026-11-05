@@ -35,7 +35,7 @@ body {
     caret-color: transparent;
 }
 
-#allerrors {
+#allmessages {
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -48,7 +48,7 @@ body {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 20px;
 }
-#allerrors div{
+#allmessages div{
     display: flex;
 
     height: 48px;
