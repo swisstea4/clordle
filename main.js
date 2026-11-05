@@ -4,13 +4,20 @@ const allowedLetters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', '
 let NotIn = "#3A3A3C";
 let CorrectSpot = "#538D4E";
 let WrongSpot = "#B59F3B";
+let colorEmojis = {
+    NotIn: "⬛",
+    CorrectSpot: "🟩",
+    WrongSpot: "🟨"
+}
 let attempt = 1;
 let focused = 0;
+let result = [];
 
 const inputs = document.getElementsByClassName("inputs");
 const allKeys = document.getElementsByClassName("allKeys");
 const winplayagain = document.getElementById("winplayagain");
 const loseplayagain = document.getElementById("loseplayagain");
+const winshare = document.getElementById("winshare");
 
 inputs[0].focus();
 
@@ -49,6 +56,7 @@ function ProcessWord(word) {
             break;
         }
     }
+    result.push(response);
     return CorrectAnswer;
 }
 function EndGame(win) {
@@ -172,4 +180,32 @@ winplayagain.addEventListener("click", ()=>{
 });
 loseplayagain.addEventListener("click", ()=>{
     window.location.reload();
+});
+
+function reverseColor(color) {
+    if (NotIn == color) return "NotIn";
+    if (CorrectSpot == color) return "CorrectSpot";
+    if (WrongSpot == color) return "WrongSpot";
+}
+winshare.addEventListener("click", ()=>{
+    let copy = "Clordle\n";
+    for (const Result of result) {
+        for (const color of Result) {
+            copy += colorEmojis[reverseColor(color)];
+        }
+        copy += "\n";
+    }
+    copy += "Play at https://swisstea4.github.io/clordle";
+    navigator.clipboard.writeText(copy);
+});
+loseshare.addEventListener("click", ()=>{
+    let copy = "Clordle\n";
+    for (const Result of result) {
+        for (const color of Result) {
+            copy += colorEmojis[reverseColor(color)];
+        }
+        copy += "\n";
+    }
+    copy += "Play at https://swisstea4.github.io/clordle";
+    navigator.clipboard.writeText(copy);
 });
