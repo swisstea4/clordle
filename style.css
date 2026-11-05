@@ -211,8 +211,7 @@ body {
     width: 400px;
     height: fit-content;
     padding: 50px;
-    left: 50%;
-    top: 50%;
+    left: 50%; 
     transform: translate(-50%, -50%);
     
     background-color: #323232;
@@ -221,7 +220,7 @@ body {
     font-family: 'Libre Franklin';
     color: #F8F8F8;
 }
-#helptitle {
+#helptitle, #changeTheme {
     font-size: 50px;
     margin: 0;   
 }
@@ -230,6 +229,56 @@ body {
 }
 #help li {
     margin-bottom: 12px;
+}
+#Theme1, #Theme2, #Theme3 {
+    display: flex;
+    gap: 5px;
+
+    width: fit-content;
+    height: fit-content;
+    padding: 5px;
+    margin: 5px;
+
+    background-color: #f8f8f8;
+    border: 0;
+    border-radius: 15px;
+
+    cursor: pointer;
+}
+#Theme1:hover, #Theme2:hover, #Theme3:hover {
+    filter: brightness(80%);
+}
+#Theme1 div, #Theme2 div, #Theme3 div {
+    width: 55px;
+    height: 55px;
+    border-radius: 15px;
+}
+#Theme11 {
+    background-color: #3A3A3C;
+}
+#Theme12 {
+    background-color: #538D4E;
+}
+#Theme13 {
+    background-color: #B59F3B;
+}
+#Theme21 {
+    background-color: #3A3A3C;
+}
+#Theme22 {
+    background-color: #538D4E;
+}
+#Theme23 {
+    background-color: #B59F3B;
+}
+#Theme31 {
+    background-color: #3A3A3C;
+}
+#Theme32 {
+    background-color: #538D4E;
+}
+#Theme33 {
+    background-color: #B59F3B;
 }
 #closehelp {
     position: absolute;
@@ -342,7 +391,7 @@ body {
         height: fit-content;
         padding: 5vw;
     }
-    #helptitle {
+    #helptitle, #changeTheme {
         font-size: 10vw;
         margin: 0;   
     }
@@ -351,6 +400,24 @@ body {
     }
     #help li {
         margin-bottom: 2.4vw;
+    }
+    #Theme1, #Theme2, #Theme3 {
+        display: flex;
+        gap: 1vw;
+
+        width: fit-content;
+        height: fit-content;
+        padding: 1vw;
+        margin: 1vw;
+
+        background-color: #f8f8f8;
+        border: 0;
+        border-radius: 3vw;
+    }
+    #Theme1 div, #Theme2 div, #Theme3 div {
+        width: 11vw;
+        height: 11vw;
+        border-radius: 3vw;
     }
     #closehelp {
         width: 6vw;
