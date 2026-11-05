@@ -1,6 +1,11 @@
 body {
     background-color: #1b1b1b;
 }
+#centering {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 #allattempts {
     display: flex;
     flex-direction: column;
@@ -36,8 +41,6 @@ body {
     flex-direction: column;
 
     top: 68px;
-    left: 50%;
-    transform: translateX(-50%);
     gap: 20px;
 
     align-items: center;
