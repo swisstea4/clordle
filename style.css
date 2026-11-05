@@ -102,6 +102,7 @@ body {
 }
 #keyEnter {
     width: 60px;
+    font-size: 14px;
 }
 #keyBackspace {
     width: 50px;
@@ -244,7 +245,7 @@ body {
     width: 90%;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 500px) {
     #allattempts {
         gap: 1vw;
         margin-top: 13.6vw;
@@ -284,6 +285,7 @@ body {
     }
     #keyEnter {
         width: 8vw;
+        font-size: 2.6vw;
     }
     #keyBackspace {
         width: 8vw;
@@ -325,7 +327,6 @@ body {
 
     #helpbutton {
         position: absolute;
-        right: 0px;
         top: 28vw;
 
         width: 12vw;
