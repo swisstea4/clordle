@@ -1,23 +1,28 @@
-const validWords = new Set([...wordles, ...nonwordles]);
-const answer = wordles[Math.floor(Math.random()*wordles.length)];
-const allowedLetters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
-let colours = ["#3A3A3C", "#538D4E", "#B59F3B"];
-let NotIn, CorrectSpot, WrongSpot;
-let IdNotIn, IdCorrectSpot, IdWrongSpot;
-function randomizeColours() {
-    IdNotIn = Math.floor(Math.random()*colours.length);
-    NotIn = colours[IdNotIn];
-    colours.splice(IdNotIn, 1);
-
-    IdCorrectSpot = Math.floor(Math.random()*colours.length);
-    CorrectSpot = colours[IdCorrectSpot];
-    colours.splice(IdCorrectSpot, 1);
-
-    IdWrongSpot = Math.floor(Math.random()*colours.length);
-    WrongSpot = colours[IdWrongSpot];
-    colours.splice(IdWrongSpot, 1);
+const API = "https://clordle-backend.swastipvp.workers.dev";
+let gameId;
+const ready = fetch(API + "/new", { method: "POST" })
+    .then(r => r.json())
+    .then(d => { gameId = d.id; });
+async function api(path, data) {
+    await ready;
+    const r = await fetch(API + path, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id: gameId, ...data })
+    });
+    return r.json();
 }
-randomizeColours();
+
+let answer, NotIn, CorrectSpot, WrongSpot;
+function reveal(r) {
+    answer = r.answer;
+    NotIn = r.NotIn;
+    CorrectSpot = r.CorrectSpot;
+    WrongSpot = r.WrongSpot;
+}
+
+const allowedLetters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+let colours = [];
 
 let colourEmojis = {
     NotIn: "⬛",
@@ -44,9 +49,6 @@ const theme3 = document.getElementById("Theme3");
 
 inputs[0].focus();
 
-function isValid(word) {
-    return validWords.has(word.toLowerCase());
-}
 function SendMessage(message) {
     const allmessages = document.getElementById("allmessages");
     allmessages.innerHTML = '<div><p>' + message + '</p></div>' + allmessages.innerHTML;
@@ -54,39 +56,13 @@ function SendMessage(message) {
         allmessages.innerHTML = allmessages.innerHTML.replace('<div><p>' + message + '</p></div>', '');
     }, 5000);
 }
-function ProcessWord(word) {
-    let response = [0, 0, 0, 0, 0];
+function ProcessWord(word, response, CorrectAnswer) {
     word = word.toLowerCase();
-    let answerCopy = answer.split('');
-    for (let i = 0; i < 5; i++) {
-        if (word[i] === answer[i]) {
-            response[i] = CorrectSpot;
-            answerCopy[i] = null;
-        }
-    }
-    for (let i = 0; i < 5; i++) {
-        if (response[i] !== 0) continue;
-        const inAnswer = answerCopy.indexOf(word[i]);
-        if (inAnswer !== -1) {
-            response[i] = WrongSpot;
-            answerCopy[inAnswer] = null;
-        }
-        else {
-            response[i] = NotIn;
-        }
-    }
 
     for (let i = (attempt-1)*5; i < attempt*5; i++) {
         inputs[i].style.backgroundColor = response[i-(attempt-1)*5];
     }
 
-    let CorrectAnswer = true;
-    for (let i = 0; i < 5; i++) {
-        if (response[i] != CorrectSpot) {
-            CorrectAnswer = false;
-            break;
-        }
-    }
     result.push(response);
     
     for (let i = 0; i < 5; i++) {
@@ -119,7 +95,7 @@ function EndGame(win) {
         losegame.style.display = "flex";
     }
 }
-function changeInput(letter) {
+async function changeInput(letter) {
     if (letter.length == 1) {
         inputs[focused].value = letter;
         if (focused%5 !== 4) {
@@ -173,11 +149,13 @@ function changeInput(letter) {
             SendMessage("Not enough letters");
         }
         else {
-            if (!isValid(word)) {
+            const data = await api("/guess", { word });
+            if (!data.valid) {
                 SendMessage("Not a valid word");
             }
             else {
-                let CorrectAnswer = ProcessWord(word);
+                if (data.reveal) reveal(data.reveal);
+                let CorrectAnswer = ProcessWord(word, data.response, data.correct);
                 if (CorrectAnswer) {
                     EndGame(true);
                 }
@@ -253,7 +231,8 @@ loseshare.addEventListener("click", ()=>{
     SendMessage("Copied to clipboard");
 });
 
-giveup.addEventListener("click", ()=>{
+giveup.addEventListener("click", async ()=>{
+    reveal(await api("/giveup"));
     EndGame(false); 
 });
 
@@ -276,19 +255,19 @@ theme1.addEventListener("click", ()=>{
     for (let i = 0; i < 3; i++) {
         colours[i] = divs[i].style.backgroundColor;
     }
-    randomizeColours();
+    api("/theme", { colours });
 });
 theme2.addEventListener("click", ()=>{
     const divs = theme2.querySelectorAll('div');
     for (let i = 0; i < 3; i++) {
         colours[i] = divs[i].style.backgroundColor;
     }
-    randomizeColours();
+    api("/theme", { colours });
 });
 theme3.addEventListener("click", ()=>{
     const divs = theme3.querySelectorAll('div');
     for (let i = 0; i < 3; i++) {
         colours[i] = divs[i].style.backgroundColor;
     }
-    randomizeColours();
+    api("/theme", { colours });
 });
