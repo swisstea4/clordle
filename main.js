@@ -15,7 +15,7 @@ function randomizeColours() {
 
     IdWrongSpot = Math.floor(Math.random()*colours.length);
     WrongSpot = colours[IdWrongSpot];
-    colours.splice(IdCorrectSpot, 1);
+    colours.splice(IdWrongSpot, 1);
 }
 randomizeColours();
 
