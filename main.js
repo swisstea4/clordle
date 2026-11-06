@@ -166,7 +166,7 @@ function changeInput(letter) {
     else if (letter == 'Enter') {
         let word = '';
         let i = focused;
-        for (let j = i-i%5; j < 5*Math.ceil(i/5); j++) {
+        for (let j = i-i%5; j < 5*(Math.floor(i/5)+1); j++) {
             word += inputs[j].value;
         }
         if (word.length < 5) {
